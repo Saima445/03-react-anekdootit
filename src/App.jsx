@@ -16,16 +16,45 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
 
   const handleNextAnecdote = () => {
     const random = Math.floor(Math.random() * anecdotes.length);
     setSelected(random);
   };
 
+  const voteThisAnecdote = () => {
+    const newVotes = [...votes];
+    newVotes[selected] += 1;
+    setVotes(newVotes);
+    console.log(newVotes);
+  };
+
+  const mostVotes = () => {
+    let mostVoted = 0;
+    let maxVotes = votes[0];
+
+    for (let i = 1; i < votes.length; i++) {
+      if (votes[i] > maxVotes) {
+        maxVotes = votes[i];
+        mostVoted = i;
+      }
+    }
+    return anecdotes[mostVoted];
+  };
+
   return (
     <>
-      {anecdotes[selected]}
-      <Button handleClick={handleNextAnecdote} text="next anecdote" />
+      <h1>Anecdote of the day</h1>
+      <p>{anecdotes[selected]}</p>
+      <p>Votes: {votes[selected]}</p>
+      <section className="buttonSection">
+        <Button handleClick={voteThisAnecdote} text="vote" />
+        <Button handleClick={handleNextAnecdote} text="next anecdote" />
+      </section>
+      <h1>Anecdote with most votes</h1>
+      <p>{mostVotes()}</p>
+      <p>Has {votes[selected]} votes</p>
     </>
   );
 };
