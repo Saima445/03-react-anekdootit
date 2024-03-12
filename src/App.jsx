@@ -40,12 +40,16 @@ const App = () => {
         mostVoted = i;
       }
     }
-    return (
-      <section>
-        <p>{anecdotes[mostVoted]}</p>
-        <p>Has {maxVotes} votes</p>
-      </section>
-    );
+    if (maxVotes === 0) {
+      return <p>No votes have been given yet</p>;
+    } else {
+      return (
+        <section>
+          <p>{anecdotes[mostVoted]}</p>
+          <p>Has {maxVotes} votes</p>
+        </section>
+      );
+    }
   };
 
   return (

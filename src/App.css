@@ -40,7 +40,7 @@ button {
 
 .buttonSection button:nth-child(odd):hover {
   background-color: rgb(161, 217, 161);
-  cursor: crosshair;
+  cursor: cell;
 }
 
 .buttonSection button:nth-child(odd):active {
