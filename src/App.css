@@ -48,11 +48,11 @@ button {
 }
 
 .buttonSection button:nth-child(even):hover {
-  background-color: rgb(220, 155, 209);
+  background-color: rgb(250, 198, 241);
   cursor: pointer;
 }
 .buttonSection button:nth-child(even):active {
-  background-color: rgb(192, 136, 183);
+  background-color: rgb(207, 148, 198);
 }
 
 i {

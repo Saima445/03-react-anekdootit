@@ -17,19 +17,19 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
-
+  //arvotaan random anekdootti taulukosta
   const handleNextAnecdote = () => {
     const random = Math.floor(Math.random() * anecdotes.length);
     setSelected(random);
   };
-
+  //funktio äänen antamiselle
   const voteThisAnecdote = () => {
     const newVotes = [...votes];
     newVotes[selected] += 1;
     setVotes(newVotes);
     console.log(newVotes);
   };
-
+  //käydään läpi kaikki äänet ja näytetään se anekdootti, jolla on tällä hetkellä eniten ääniä äänimäärän kera
   const mostVotes = () => {
     let mostVoted = 0;
     let maxVotes = votes[0];
@@ -40,7 +40,12 @@ const App = () => {
         mostVoted = i;
       }
     }
-    return anecdotes[mostVoted];
+    return (
+      <section>
+        <p>{anecdotes[mostVoted]}</p>
+        <p>Has {maxVotes} votes</p>
+      </section>
+    );
   };
 
   return (
@@ -53,8 +58,7 @@ const App = () => {
         <Button handleClick={handleNextAnecdote} text="next anecdote" />
       </section>
       <h1>Anecdote with most votes</h1>
-      <p>{mostVotes()}</p>
-      <p>Has {votes[selected]} votes</p>
+      {mostVotes()}
     </>
   );
 };
